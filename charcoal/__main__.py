@@ -9,6 +9,7 @@ from datetime import datetime
 import click
 
 from charcoal import __version__
+from charcoal.commands.repo import repo_group
 from charcoal.lib.config.models import RepoConfig
 from charcoal.lib.config.store import load_repo_config, load_user_config
 from charcoal.lib.context import ContextObject
@@ -87,6 +88,10 @@ def cli(
     splog.debug(f"Debug mode: {debug}", ctx_obj)
     splog.debug(f"Quiet mode: {quiet}", ctx_obj)
     splog.debug(f"Interactive mode: {interactive}", ctx_obj)
+
+
+# Register command groups
+cli.add_command(repo_group)
 
 
 @cli.command()
