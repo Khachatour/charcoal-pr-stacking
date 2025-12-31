@@ -1,0 +1,8 @@
+# Development dependencies for testing and linting
+# Install with: pip install -r requirements-dev.txt
+pytest>=8.0
+pytest-xdist>=3.0
+mypy>=1.0
+ruff>=0.1.0
+black>=24.0
+build>=1.0
