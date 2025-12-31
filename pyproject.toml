@@ -1,0 +1,48 @@
+[tool.poetry]
+name = "charcoal"
+version = "0.2.4"
+description = "A Python CLI for stacked pull requests and branch management"
+authors = ["Daner Williams <danerwilliams@example.com>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/danerwilliams/charcoal"
+repository = "https://github.com/danerwilliams/charcoal"
+packages = [{include = "charcoal"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+click = "^8.1.0"
+pydantic = "^2.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0"
+pytest-xdist = "^3.0"
+mypy = "^1.0"
+ruff = "^0.1.0"
+black = "^24.0"
+
+[tool.poetry.scripts]
+gt = "charcoal.__main__:cli"
+graphite = "charcoal.__main__:cli"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+
+[tool.black]
+line-length = 88
+target-version = ['py311']
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
