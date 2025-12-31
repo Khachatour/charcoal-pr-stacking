@@ -22,8 +22,8 @@ ruff = "^0.1.0"
 black = "^24.0.0"
 
 [tool.poetry.scripts]
-gt = "charcoal.__main__:cli"
-graphite = "charcoal.__main__:cli"
+gt = "charcoal.__main__:main"
+graphite = "charcoal.__main__:main"
 
 [build-system]
 requires = ["poetry-core"]
