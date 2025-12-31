@@ -188,7 +188,7 @@ class TestConfigPersistence:
         repo_root.mkdir()
 
         config_path = get_repo_config_path(repo_root)
-        assert config_path == repo_root / ".graphite_repo_config"
+        assert config_path == repo_root / ".git" / ".graphite_repo_config"
 
     def test_get_user_config_path(self):
         """Test user config path resolution."""
@@ -239,6 +239,7 @@ class TestConfigPersistence:
         repo_root.mkdir()
 
         config_path = get_repo_config_path(repo_root)
+        config_path.parent.mkdir(parents=True, exist_ok=True)
         config_path.write_text("{ invalid json }")
 
         with pytest.raises(ConfigError) as exc_info:

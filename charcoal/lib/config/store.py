@@ -19,8 +19,11 @@ USER_CONFIG_ALT_FILENAME = "config.json"
 
 
 def get_repo_config_path(repo_root: Path) -> Path:
-    """Get the path to the repository configuration file."""
-    return repo_root / REPO_CONFIG_FILENAME
+    """Get the path to the repository configuration file.
+
+    The config file is stored in the .git directory to match TypeScript behavior.
+    """
+    return repo_root / ".git" / REPO_CONFIG_FILENAME
 
 
 def get_user_config_path() -> Path:
@@ -93,6 +96,9 @@ def save_repo_config(repo_root: Path, config: RepoConfig) -> None:
         config: RepoConfig instance to save
     """
     repo_config_path = get_repo_config_path(repo_root)
+
+    # Ensure parent directory exists (.git directory)
+    repo_config_path.parent.mkdir(parents=True, exist_ok=True)
 
     # Serialize to JSON with indentation for readability
     config_json = config.model_dump_json(indent=2, exclude_none=True)
