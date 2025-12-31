@@ -1,0 +1,70 @@
+[tool.poetry]
+name = "charcoal"
+version = "0.1.0"
+description = "A Python CLI for managing Git stacks and pull requests - migration from TypeScript Graphite CLI"
+authors = ["Charcoal Contributors"]
+readme = "README.md"
+homepage = "https://github.com/danerwilliams/charcoal"
+repository = "https://github.com/danerwilliams/charcoal"
+license = "None"
+packages = [{include = "charcoal"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+click = "^8.1.0"
+pydantic = "^2.0.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0.0"
+pytest-xdist = "^3.5.0"
+mypy = "^1.8.0"
+ruff = "^0.1.0"
+black = "^24.0.0"
+
+[tool.poetry.scripts]
+gt = "charcoal.__main__:cli"
+graphite = "charcoal.__main__:cli"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+
+[tool.ruff.lint]
+select = [
+    "E",  # pycodestyle errors
+    "W",  # pycodestyle warnings
+    "F",  # pyflakes
+    "I",  # isort
+    "N",  # pep8-naming
+    "UP", # pyupgrade
+]
+ignore = []
+
+[tool.black]
+line-length = 88
+target-version = ["py311"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_any_generics = true
+check_untyped_defs = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+follow_imports = "normal"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"
